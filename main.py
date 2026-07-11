@@ -1,5 +1,7 @@
-print("bhavithsasi")
-print("17")
-print("student")
-print("sri chaitanya")
-print("interfirstyear")
+x = 8
+y = 4
+
+print(x + y)
+print(x * y)
+print(x / y)
+print(x - y)
