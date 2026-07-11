@@ -1,7 +1,7 @@
-x = 8
-y = 4
+a = 6
+b = 3
 
-print(x + y)
-print(x * y)
-print(x / y)
-print(x - y)
+print(a + b)
+print(a * b)
+print(a / b)
+print(a - b)
