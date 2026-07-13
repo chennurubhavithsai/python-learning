@@ -1,19 +1,6 @@
-name = input("Enter your name: ")
-marks = int(input("Enter your marks: "))
+age = int(input("Enter your age: "))
 
-print()
-print("===== Student Result =====")
-print("Name:", name)
-print("Marks:", marks)
-
-if marks >= 90:
-    print("Grade: A")
-
-elif marks >= 75:
-    print("Grade: B")
-
-elif marks >= 50:
-    print("Grade: C")
-
+if age >= 18 and age <= 60:
+    print("You are eligible to work.")
 else:
-    print("Grade: FAIL")
+    print("Not eligible.")
