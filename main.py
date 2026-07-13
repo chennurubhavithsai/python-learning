@@ -2,11 +2,18 @@ name = input("Enter your name: ")
 marks = int(input("Enter your marks: "))
 
 print()
-print("===== Result =====")
+print("===== Student Result =====")
 print("Name:", name)
 print("Marks:", marks)
 
-if marks >= 35:
-    print("Result: PASS")
+if marks >= 90:
+    print("Grade: A")
+
+elif marks >= 75:
+    print("Grade: B")
+
+elif marks >= 50:
+    print("Grade: C")
+
 else:
-    print("Result: FAIL")git
+    print("Grade: FAIL")
