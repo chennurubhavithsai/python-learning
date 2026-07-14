@@ -1,5 +1,6 @@
-name = input("Enter your name: ")
+number = int(input("Enter a number: "))
 
-for i in range(10):
-    print(name)
-    
+print("\nMultiplication Table")
+
+for i in range(1, 11):
+    print(number, "x", i, "=", number * i)
