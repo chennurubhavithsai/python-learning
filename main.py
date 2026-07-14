@@ -1,3 +1,5 @@
-for i in range(5):
-    print("hello")
+name = input("Enter your name: ")
+
+for i in range(10):
+    print(name)
     
