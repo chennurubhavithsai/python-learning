@@ -1,5 +1,7 @@
-number = 2
+number = int(input("Start countdown from: "))
 
-while number <= 20:
+while number >= 1:
     print(number)
-    number += 2git
+    number -= 1
+
+print("🚀 Blast Off!")
