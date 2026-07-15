@@ -1,6 +1,6 @@
-number = int(input("Enter a number: "))
+count = 1
 
-print("\nMultiplication Table")
-
-for i in range(1, 11):
-    print(number, "x", i, "=", number * i)
+while count <= 10:
+    print(count)
+    count += 1
+    
