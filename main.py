@@ -1,6 +1,5 @@
-count = 1
+number = 2
 
-while count <= 10:
-    print(count)
-    count += 1
-    
+while number <= 20:
+    print(number)
+    number += 2git
