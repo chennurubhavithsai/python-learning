@@ -1,5 +1,5 @@
-def greet():
-    print("Hello Bhavith!")
-    print("Welcome to Python!")
+def square(number):
+    return number * number
 
-greet()
+print(square(5))
+print(square(8))
