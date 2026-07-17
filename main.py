@@ -1,9 +1,10 @@
-fruits = ["Apple", "Banana", "Mango"]
+students = []
 
-fruits.append("Orange")
+students.append(input("Enter Student 1: "))
+students.append(input("Enter Student 2: "))
+students.append(input("Enter Student 3: "))
 
-print(fruits)
-fruits.remove("Banana")
+print("\n===== Student List =====")
 
-print(fruits)
-print(len(fruits))
+for student in students:
+    print(student)
