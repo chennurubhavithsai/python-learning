@@ -4,8 +4,16 @@ student = {
     "course": "MPC"
 }
 
+print("===== Original Dictionary =====")
 print(student)
 
-print(student["name"])
-print(student["age"])
-print(student["course"])
+# Update age
+student["age"] = 18
+
+# Add a new key
+student["college"] = "Sri Chaitanya"
+
+print("\n===== Updated Dictionary =====")
+
+for key, value in student.items():
+    print(key.capitalize() + ":", value)
