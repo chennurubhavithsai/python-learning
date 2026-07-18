@@ -1,10 +1,11 @@
-students = []
+student = {
+    "name": "Bhavith Sai",
+    "age": 17,
+    "course": "MPC"
+}
 
-students.append(input("Enter Student 1: "))
-students.append(input("Enter Student 2: "))
-students.append(input("Enter Student 3: "))
+print(student)
 
-print("\n===== Student List =====")
-
-for student in students:
-    print(student)
+print(student["name"])
+print(student["age"])
+print(student["course"])
