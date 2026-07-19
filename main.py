@@ -1,10 +1,9 @@
-student = {}
+file = open("student.txt", "w")
 
-student["name"] = input("Enter your name: ")
-student["age"] = int(input("Enter your age: "))
-student["course"] = input("Enter your course: ")
+file.write("Name: Bhavith Sai\n")
+file.write("Course: MPC\n")
+file.write("College: Sri Chaitanya\n")
 
-print("\n===== Student Information =====")
+file.close()
 
-for key, value in student.items():
-    print(key.capitalize() + ":", value)
+print("Data saved successfully!")
