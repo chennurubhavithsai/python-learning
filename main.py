@@ -1,9 +1,7 @@
-file = open("student.txt", "w")
+file = open("student.txt", "r")
 
-file.write("Name: Bhavith Sai\n")
-file.write("Course: MPC\n")
-file.write("College: Sri Chaitanya\n")
+content = file.read()
+
+print(content)
 
 file.close()
-
-print("Data saved successfully!")
