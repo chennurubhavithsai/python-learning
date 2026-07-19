@@ -1,3 +1,2 @@
-Name: Bhavith Sai
-Course: MPC
-College: Sri Chaitanya
+Name: bhavith sai
+Course: mpc
