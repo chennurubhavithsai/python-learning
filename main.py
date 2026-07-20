@@ -1,6 +1,10 @@
 try:
     number = int(input("Enter a number: "))
-    print(100 / number)
+    result = 100 / number
+    print("Result:", result)
 
-except:
-    print("An error occurred!")
+except ValueError:
+    print("Please enter numbers only!")
+
+except ZeroDivisionError:
+    print("You cannot divide by zero!")
