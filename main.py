@@ -1,14 +1,8 @@
-try:
-    num1 = float(input("Enter first number: "))
-    num2 = float(input("Enter second number: "))
+import math
 
-    print("Addition:", num1 + num2)
-    print("Subtraction:", num1 - num2)
-    print("Multiplication:", num1 * num2)
-    print("Division:", num1 / num2)
+number = 25
 
-except ValueError:
-    print("Please enter valid numbers.")
-
-except ZeroDivisionError:
-    print("Cannot divide by zero.")
+print("Square Root:", math.sqrt(number))
+print("Power:", math.pow(5, 3))
+print("Ceiling:", math.ceil(4.2))
+print("Floor:", math.floor(4.8))
