@@ -1,11 +1,8 @@
-import random
+class Student:
+    name = "Bhavith Sai"
+    course = "MPC"
 
-secret = random.randint(1, 10)
+student = Student()
 
-guess = int(input("Guess a number (1-10): "))
-
-if guess == secret:
-    print("🎉 Congratulations! You guessed correctly.")
-else:
-    print("❌ Wrong guess.")
-    print("The correct number was:", secret)
+print(student.name)
+print(student.course)
