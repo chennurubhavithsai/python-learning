@@ -1,8 +1,10 @@
-class Student:
-    name = "Bhavith Sai"
-    course = "MPC"
+try:
+    number = int(input("Enter a number: "))
+    result = 100 / number
+    print("Result:", result)
 
-student = Student()
+except ValueError:
+    print("Please enter numbers only!")
 
-print(student.name)
-print(student.course)
+except ZeroDivisionError:
+    print("You cannot divide by zero!")
