@@ -1,14 +1,15 @@
-try:
-    num1 = float(input("Enter first number: "))
-    num2 = float(input("Enter second number: "))
+class BankAccount:
 
-    print("Addition:", num1 + num2)
-    print("Subtraction:", num1 - num2)
-    print("Multiplication:", num1 * num2)
-    print("Division:", num1 / num2)
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
 
-except ValueError:
-    print("Please enter valid numbers.")
+    def display(self):
+        print("\n===== Account Details =====")
+        print("Name:", self.name)
+        print("Balance: ₹", self.balance)
 
-except ZeroDivisionError:
-    print("Cannot divide by zero.")
+
+account = BankAccount("Bhavith Sai", 1000)
+
+account.display()
