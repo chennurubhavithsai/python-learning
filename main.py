@@ -1,21 +1,57 @@
-books = [
-    "Python Basics",
-    "Data Structures",
-    "Machine Learning"
-]
+class Library:
 
-new_book = input("Enter a new book: ")
-books.append(new_book)
+    def __init__(self):
+        self.books = []
 
-remove_book = input("Enter a book to remove: ")
+    def add_book(self):
+        book = input("Enter Book Name: ")
+        self.books.append(book)
+        print("Book Added Successfully!")
 
-if remove_book in books:
-    books.remove(remove_book)
-    print("Book removed successfully!")
-else:
-    print("Book not found!")
+    def remove_book(self):
+        book = input("Enter Book Name to Remove: ")
 
-print("\n===== Updated Library =====")
+        if book in self.books:
+            self.books.remove(book)
+            print("Book Removed Successfully!")
+        else:
+            print("Book Not Found!")
 
-for book in books:
-    print(book)
+    def show_books(self):
+
+        if len(self.books) == 0:
+            print("Library is Empty!")
+        else:
+            print("\n===== Books =====")
+
+            for book in self.books:
+                print("-", book)
+
+
+library = Library()
+
+while True:
+
+    print("\n===== LIBRARY MENU =====")
+    print("1. Add Book")
+    print("2. Remove Book")
+    print("3. Show Books")
+    print("4. Exit")
+
+    choice = input("Enter Choice: ")
+
+    if choice == "1":
+        library.add_book()
+
+    elif choice == "2":
+        library.remove_book()
+
+    elif choice == "3":
+        library.show_books()
+
+    elif choice == "4":
+        print("Thank you for using Library Management System!")
+        break
+
+    else:
+        print("Invalid Choice!")
