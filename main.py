@@ -1,57 +1,24 @@
-class Library:
-
-    def __init__(self):
-        self.books = []
-
-    def add_book(self):
-        book = input("Enter Book Name: ")
-        self.books.append(book)
-        print("Book Added Successfully!")
-
-    def remove_book(self):
-        book = input("Enter Book Name to Remove: ")
-
-        if book in self.books:
-            self.books.remove(book)
-            print("Book Removed Successfully!")
-        else:
-            print("Book Not Found!")
-
-    def show_books(self):
-
-        if len(self.books) == 0:
-            print("Library is Empty!")
-        else:
-            print("\n===== Books =====")
-
-            for book in self.books:
-                print("-", book)
-
-
-library = Library()
+students = []
 
 while True:
+    name = input("Enter student name: ")
+    age = input("Enter student age: ")
+    course = input("Enter course: ")
 
-    print("\n===== LIBRARY MENU =====")
-    print("1. Add Book")
-    print("2. Remove Book")
-    print("3. Show Books")
-    print("4. Exit")
+    student = {
+        "name": name,
+        "age": age,
+        "course": course
+    }
 
-    choice = input("Enter Choice: ")
+    students.append(student)
 
-    if choice == "1":
-        library.add_book()
+    choice = input("Add another student? (yes/no): ")
 
-    elif choice == "2":
-        library.remove_book()
-
-    elif choice == "3":
-        library.show_books()
-
-    elif choice == "4":
-        print("Thank you for using Library Management System!")
+    if choice.lower() != "yes":
         break
 
-    else:
-        print("Invalid Choice!")
+print("\n===== Student Records =====")
+
+for student in students:
+    print(student)
