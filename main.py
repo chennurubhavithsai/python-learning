@@ -1,33 +1,34 @@
-students = []
-
-# Add students
-while True:
-    name = input("Enter student name: ")
-    age = input("Enter age: ")
-    course = input("Enter course: ")
-
-    student = {
-        "name": name,
-        "age": age,
-        "course": course
+students = [
+    {
+        "name": "bhavith sai",
+        "age": "17",
+        "course": "MPC"
+    },
+    {
+        "name": "efrahem",
+        "age": "16",
+        "course": "BiPC"
     }
+]
 
-    students.append(student)
-
-    choice = input("Add another student? (yes/no): ")
-    if choice.lower() != "yes":
-        break
-
-# Search student
-search = input("\nEnter student name to search: ")
+update_name = input("\nEnter student name to update: ")
 
 found = False
 
 for student in students:
-    if student["name"].lower() == search.lower():
+    if student["name"].lower() == update_name.lower():
         print("\nStudent Found!")
-        print(student)
+
+        student["age"] = input("Enter new age: ")
+        student["course"] = input("Enter new course: ")
+
+        print("\nStudent Updated Successfully!")
         found = True
+        break
 
 if not found:
     print("Student not found.")
+
+print("\n===== Updated Records =====")
+for student in students:
+    print(student)
