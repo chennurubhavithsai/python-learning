@@ -1,34 +1,19 @@
-students = [
-    {
-        "name": "bhavith sai",
-        "age": "17",
-        "course": "MPC"
-    },
-    {
-        "name": "efrahem",
-        "age": "16",
-        "course": "BiPC"
-    }
-]
+import random
+import string
 
-update_name = input("\nEnter student name to update: ")
+def generate_password(length):
+    characters = string.ascii_letters + string.digits + string.punctuation
 
-found = False
+    password = ""
 
-for student in students:
-    if student["name"].lower() == update_name.lower():
-        print("\nStudent Found!")
+    for i in range(length):
+        password += random.choice(characters)
 
-        student["age"] = input("Enter new age: ")
-        student["course"] = input("Enter new course: ")
+    return password
 
-        print("\nStudent Updated Successfully!")
-        found = True
-        break
+length = int(input("Enter password length: "))
 
-if not found:
-    print("Student not found.")
+password = generate_password(length)
 
-print("\n===== Updated Records =====")
-for student in students:
-    print(student)
+print("\nGenerated Password:")
+print(password)
