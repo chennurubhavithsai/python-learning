@@ -1,27 +1,21 @@
-import random
-import string
+website = input("Enter website to search: ").lower()
 
-def generate_password(length):
-    characters = string.ascii_letters + string.digits + string.punctuation
-    password = ""
+found = False
 
-    for i in range(length):
-        password += random.choice(characters)
+with open("passwords.txt", "r") as file:
+    lines = file.readlines()
 
-    return password
+for i in range(len(lines)):
+    if lines[i].startswith("Website:"):
+        saved_website = lines[i].split(":")[1].strip().lower()
 
-website = input("Enter website name: ")
-username = input("Enter username/email: ")
+        if saved_website == website:
+            print("\n✅ Password Found!")
+            print(lines[i].strip())        # Website
+            print(lines[i + 1].strip())    # Username
+            print(lines[i + 2].strip())    # Password
+            found = True
+            break
 
-length = int(input("Enter password length: "))
-password = generate_password(length)
-
-print("\nGenerated Password:", password)
-
-with open("passwords.txt", "a") as file:
-    file.write(f"Website: {website}\n")
-    file.write(f"Username: {username}\n")
-    file.write(f"Password: {password}\n")
-    file.write("-----------------------------\n")
-
-print("\n✅ Password saved successfully!")
+if not found:
+    print("\n❌ No password found for this website.")
