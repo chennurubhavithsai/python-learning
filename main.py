@@ -5,7 +5,8 @@ while True:
     print("1. Add Task")
     print("2. View Tasks")
     print("3. Mark Task as Completed")
-    print("4. Exit")
+    print("4. Save Tasks")
+    print("5. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -30,7 +31,6 @@ while True:
         if len(tasks) == 0:
             print("No tasks available.")
         else:
-            print("\n===== YOUR TASKS =====")
             for i, task in enumerate(tasks, start=1):
                 status = "✅" if task["completed"] else "❌"
                 print(f"{i}. {task['task']} {status}")
@@ -44,8 +44,16 @@ while True:
                 print("❌ Invalid task number.")
 
     elif choice == "4":
-        print("Thank you for using the To-Do List!")
+        with open("tasks.txt", "w") as file:
+            for task in tasks:
+                status = "Completed" if task["completed"] else "Pending"
+                file.write(f"{task['task']} - {status}\n")
+
+        print("✅ Tasks saved successfully!")
+
+    elif choice == "5":
+        print("Goodbye!")
         break
 
     else:
-        print("❌ Invalid choice. Try again.")
+        print("❌ Invalid choice!")
