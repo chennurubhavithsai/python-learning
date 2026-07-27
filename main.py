@@ -1,21 +1,29 @@
-website = input("Enter website to search: ").lower()
+tasks = []
 
-found = False
+while True:
+    print("\n===== TO-DO LIST =====")
+    print("1. Add Task")
+    print("2. View Tasks")
+    print("3. Exit")
 
-with open("passwords.txt", "r") as file:
-    lines = file.readlines()
+    choice = input("Enter your choice: ")
 
-for i in range(len(lines)):
-    if lines[i].startswith("Website:"):
-        saved_website = lines[i].split(":")[1].strip().lower()
+    if choice == "1":
+        task = input("Enter task: ")
+        tasks.append(task)
+        print("✅ Task added successfully!")
 
-        if saved_website == website:
-            print("\n✅ Password Found!")
-            print(lines[i].strip())        # Website
-            print(lines[i + 1].strip())    # Username
-            print(lines[i + 2].strip())    # Password
-            found = True
-            break
+    elif choice == "2":
+        if len(tasks) == 0:
+            print("No tasks available.")
+        else:
+            print("\nYour Tasks:")
+            for i, task in enumerate(tasks, start=1):
+                print(f"{i}. {task}")
 
-if not found:
-    print("\n❌ No password found for this website.")
+    elif choice == "3":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice!")
