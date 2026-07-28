@@ -5,7 +5,8 @@ while True:
     print("1. Add Income")
     print("2. Add Expense")
     print("3. View Transactions")
-    print("4. Exit")
+    print("4. View Summary")
+    print("5. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -34,8 +35,25 @@ while True:
                 print(f"{i}. {transaction['type']} - ${transaction['amount']:.2f}")
 
     elif choice == "4":
-        print("Goodbye!")
+        total_income = 0
+        total_expense = 0
+
+        for transaction in transactions:
+            if transaction["type"] == "Income":
+                total_income += transaction["amount"]
+            else:
+                total_expense += transaction["amount"]
+
+        balance = total_income - total_expense
+
+        print("\n===== SUMMARY =====")
+        print(f"Total Income : ${total_income:.2f}")
+        print(f"Total Expense: ${total_expense:.2f}")
+        print(f"Balance      : ${balance:.2f}")
+
+    elif choice == "5":
+        print("Thank you for using Expense Tracker!")
         break
 
     else:
-        print("❌ Invalid choice.")
+        print("❌ Invalid choice!")
