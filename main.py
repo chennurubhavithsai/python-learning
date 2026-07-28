@@ -1,59 +1,41 @@
-tasks = []
+transactions = []
 
 while True:
-    print("\n===== TO-DO LIST =====")
-    print("1. Add Task")
-    print("2. View Tasks")
-    print("3. Mark Task as Completed")
-    print("4. Save Tasks")
-    print("5. Exit")
+    print("\n===== EXPENSE TRACKER =====")
+    print("1. Add Income")
+    print("2. Add Expense")
+    print("3. View Transactions")
+    print("4. Exit")
 
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        task = input("Enter task: ")
-        tasks.append({
-            "task": task,
-            "completed": False
+        amount = float(input("Enter income amount: $"))
+        transactions.append({
+            "type": "Income",
+            "amount": amount
         })
-        print("✅ Task added successfully!")
+        print("✅ Income added successfully!")
 
     elif choice == "2":
-        if len(tasks) == 0:
-            print("No tasks available.")
-        else:
-            print("\n===== YOUR TASKS =====")
-            for i, task in enumerate(tasks, start=1):
-                status = "✅" if task["completed"] else "❌"
-                print(f"{i}. {task['task']} {status}")
+        amount = float(input("Enter expense amount: $"))
+        transactions.append({
+            "type": "Expense",
+            "amount": amount
+        })
+        print("✅ Expense added successfully!")
 
     elif choice == "3":
-        if len(tasks) == 0:
-            print("No tasks available.")
+        if len(transactions) == 0:
+            print("No transactions available.")
         else:
-            for i, task in enumerate(tasks, start=1):
-                status = "✅" if task["completed"] else "❌"
-                print(f"{i}. {task['task']} {status}")
-
-            task_number = int(input("Enter task number to complete: "))
-
-            if 1 <= task_number <= len(tasks):
-                tasks[task_number - 1]["completed"] = True
-                print("✅ Task marked as completed!")
-            else:
-                print("❌ Invalid task number.")
+            print("\n===== TRANSACTIONS =====")
+            for i, transaction in enumerate(transactions, start=1):
+                print(f"{i}. {transaction['type']} - ${transaction['amount']:.2f}")
 
     elif choice == "4":
-        with open("tasks.txt", "w") as file:
-            for task in tasks:
-                status = "Completed" if task["completed"] else "Pending"
-                file.write(f"{task['task']} - {status}\n")
-
-        print("✅ Tasks saved successfully!")
-
-    elif choice == "5":
         print("Goodbye!")
         break
 
     else:
-        print("❌ Invalid choice!")
+        print("❌ Invalid choice.")
