@@ -1,12 +1,26 @@
 transactions = []
 
+# Load previous transactions
+try:
+    with open("expenses.txt", "r") as file:
+        for line in file:
+            data = line.strip().split(",")
+            if len(data) == 2:
+                transactions.append({
+                    "type": data[0],
+                    "amount": float(data[1])
+                })
+except FileNotFoundError:
+    pass
+
 while True:
     print("\n===== EXPENSE TRACKER =====")
     print("1. Add Income")
     print("2. Add Expense")
     print("3. View Transactions")
     print("4. View Summary")
-    print("5. Exit")
+    print("5. Save Transactions")
+    print("6. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -52,6 +66,13 @@ while True:
         print(f"Balance      : ${balance:.2f}")
 
     elif choice == "5":
+        with open("expenses.txt", "w") as file:
+            for transaction in transactions:
+                file.write(f"{transaction['type']},{transaction['amount']}\n")
+
+        print("✅ Transactions saved successfully!")
+
+    elif choice == "6":
         print("Thank you for using Expense Tracker!")
         break
 
