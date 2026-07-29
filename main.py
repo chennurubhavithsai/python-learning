@@ -4,9 +4,7 @@ while True:
     print("\n===== CONTACT BOOK =====")
     print("1. Add Contact")
     print("2. View Contacts")
-    print("3. Search Contact")
-    print("4. Update Contact")
-    print("5. Exit")
+    print("3. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -35,39 +33,8 @@ while True:
                 print(f"Email: {contact['email']}")
 
     elif choice == "3":
-        search = input("Enter contact name: ").lower()
-        found = False
-
-        for contact in contacts:
-            if contact["name"].lower() == search:
-                print("\n✅ Contact Found")
-                print(f"Name : {contact['name']}")
-                print(f"Phone: {contact['phone']}")
-                print(f"Email: {contact['email']}")
-                found = True
-                break
-
-        if not found:
-            print("❌ Contact not found.")
-
-    elif choice == "4":
-        update = input("Enter contact name to update: ").lower()
-        found = False
-
-        for contact in contacts:
-            if contact["name"].lower() == update:
-                contact["phone"] = input("Enter new phone number: ")
-                contact["email"] = input("Enter new email: ")
-                print("✅ Contact updated successfully!")
-                found = True
-                break
-
-        if not found:
-            print("❌ Contact not found.")
-
-    elif choice == "5":
-        print("Thank you for using Contact Book!")
+        print("Goodbye!")
         break
 
     else:
-        print("❌ Invalid choice!")
+        print("❌ Invalid choice.")
