@@ -1,79 +1,72 @@
-transactions = []
-
-# Load previous transactions
-try:
-    with open("expenses.txt", "r") as file:
-        for line in file:
-            data = line.strip().split(",")
-            if len(data) == 2:
-                transactions.append({
-                    "type": data[0],
-                    "amount": float(data[1])
-                })
-except FileNotFoundError:
-    pass
+contacts = []
 
 while True:
-    print("\n===== EXPENSE TRACKER =====")
-    print("1. Add Income")
-    print("2. Add Expense")
-    print("3. View Transactions")
-    print("4. View Summary")
-    print("5. Save Transactions")
-    print("6. Exit")
+    print("\n===== CONTACT BOOK =====")
+    print("1. Add Contact")
+    print("2. View Contacts")
+    print("3. Search Contact")
+    print("4. Update Contact")
+    print("5. Exit")
 
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        amount = float(input("Enter income amount: $"))
-        transactions.append({
-            "type": "Income",
-            "amount": amount
+        name = input("Enter Name: ")
+        phone = input("Enter Phone Number: ")
+        email = input("Enter Email: ")
+
+        contacts.append({
+            "name": name,
+            "phone": phone,
+            "email": email
         })
-        print("✅ Income added successfully!")
+
+        print("✅ Contact added successfully!")
 
     elif choice == "2":
-        amount = float(input("Enter expense amount: $"))
-        transactions.append({
-            "type": "Expense",
-            "amount": amount
-        })
-        print("✅ Expense added successfully!")
+        if len(contacts) == 0:
+            print("No contacts found.")
+        else:
+            print("\n===== CONTACT LIST =====")
+            for i, contact in enumerate(contacts, start=1):
+                print(f"\nContact {i}")
+                print(f"Name : {contact['name']}")
+                print(f"Phone: {contact['phone']}")
+                print(f"Email: {contact['email']}")
 
     elif choice == "3":
-        if len(transactions) == 0:
-            print("No transactions available.")
-        else:
-            print("\n===== TRANSACTIONS =====")
-            for i, transaction in enumerate(transactions, start=1):
-                print(f"{i}. {transaction['type']} - ${transaction['amount']:.2f}")
+        search = input("Enter contact name: ").lower()
+        found = False
+
+        for contact in contacts:
+            if contact["name"].lower() == search:
+                print("\n✅ Contact Found")
+                print(f"Name : {contact['name']}")
+                print(f"Phone: {contact['phone']}")
+                print(f"Email: {contact['email']}")
+                found = True
+                break
+
+        if not found:
+            print("❌ Contact not found.")
 
     elif choice == "4":
-        total_income = 0
-        total_expense = 0
+        update = input("Enter contact name to update: ").lower()
+        found = False
 
-        for transaction in transactions:
-            if transaction["type"] == "Income":
-                total_income += transaction["amount"]
-            else:
-                total_expense += transaction["amount"]
+        for contact in contacts:
+            if contact["name"].lower() == update:
+                contact["phone"] = input("Enter new phone number: ")
+                contact["email"] = input("Enter new email: ")
+                print("✅ Contact updated successfully!")
+                found = True
+                break
 
-        balance = total_income - total_expense
-
-        print("\n===== SUMMARY =====")
-        print(f"Total Income : ${total_income:.2f}")
-        print(f"Total Expense: ${total_expense:.2f}")
-        print(f"Balance      : ${balance:.2f}")
+        if not found:
+            print("❌ Contact not found.")
 
     elif choice == "5":
-        with open("expenses.txt", "w") as file:
-            for transaction in transactions:
-                file.write(f"{transaction['type']},{transaction['amount']}\n")
-
-        print("✅ Transactions saved successfully!")
-
-    elif choice == "6":
-        print("Thank you for using Expense Tracker!")
+        print("Thank you for using Contact Book!")
         break
 
     else:
