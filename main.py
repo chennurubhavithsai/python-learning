@@ -1,138 +1,51 @@
-contacts = []
+score = 0
 
-# Load contacts from file
-try:
-    with open("contacts.txt", "r") as file:
-        for line in file:
-            data = line.strip().split(",")
+print("===== PYTHON QUIZ =====")
 
-            if len(data) == 3:
-                contacts.append({
-                    "name": data[0],
-                    "phone": data[1],
-                    "email": data[2]
-                })
-except FileNotFoundError:
-    pass
+print("\nQuestion 1")
+print("What is the output of print(5 + 3)?")
+print("A. 53")
+print("B. 8")
+print("C. Error")
+print("D. None")
 
-while True:
+answer = input("Enter your answer (A/B/C/D): ").upper()
 
-    print("\n===== CONTACT BOOK =====")
-    print("1. Add Contact")
-    print("2. View Contacts")
-    print("3. Search Contact")
-    print("4. Update Contact")
-    print("5. Delete Contact")
-    print("6. Save Contacts")
-    print("7. Exit")
+if answer == "B":
+    print("✅ Correct!")
+    score += 1
+else:
+    print("❌ Wrong!")
 
-    choice = input("Enter your choice: ")
+print("\nQuestion 2")
+print("Which keyword is used to create a function?")
+print("A. function")
+print("B. define")
+print("C. def")
+print("D. func")
 
-    if choice == "1":
+answer = input("Enter your answer (A/B/C/D): ").upper()
 
-        name = input("Enter Name: ")
-        phone = input("Enter Phone Number: ")
-        email = input("Enter Email: ")
+if answer == "C":
+    print("✅ Correct!")
+    score += 1
+else:
+    print("❌ Wrong!")
 
-        contacts.append({
-            "name": name,
-            "phone": phone,
-            "email": email
-        })
+print("\nQuestion 3")
+print("Which data type stores True or False?")
+print("A. int")
+print("B. bool")
+print("C. string")
+print("D. list")
 
-        print("✅ Contact Added Successfully!")
+answer = input("Enter your answer (A/B/C/D): ").upper()
 
-    elif choice == "2":
+if answer == "B":
+    print("✅ Correct!")
+    score += 1
+else:
+    print("❌ Wrong!")
 
-        if len(contacts) == 0:
-            print("No Contacts Found!")
-
-        else:
-            print("\n===== CONTACT LIST =====")
-
-            for i, contact in enumerate(contacts, start=1):
-                print(f"\nContact {i}")
-                print(f"Name : {contact['name']}")
-                print(f"Phone: {contact['phone']}")
-                print(f"Email: {contact['email']}")
-
-    elif choice == "3":
-
-        search = input("Enter Name: ").lower()
-
-        found = False
-
-        for contact in contacts:
-
-            if contact["name"].lower() == search:
-
-                print("\n✅ Contact Found")
-                print(contact)
-
-                found = True
-                break
-
-        if not found:
-            print("❌ Contact Not Found")
-
-    elif choice == "4":
-
-        update = input("Enter Contact Name: ").lower()
-
-        found = False
-
-        for contact in contacts:
-
-            if contact["name"].lower() == update:
-
-                contact["phone"] = input("Enter New Phone: ")
-                contact["email"] = input("Enter New Email: ")
-
-                print("✅ Contact Updated Successfully!")
-
-                found = True
-                break
-
-        if not found:
-            print("❌ Contact Not Found")
-
-    elif choice == "5":
-
-        delete = input("Enter Contact Name to Delete: ").lower()
-
-        found = False
-
-        for contact in contacts:
-
-            if contact["name"].lower() == delete:
-
-                contacts.remove(contact)
-
-                print("✅ Contact Deleted Successfully!")
-
-                found = True
-                break
-
-        if not found:
-            print("❌ Contact Not Found")
-
-    elif choice == "6":
-
-        with open("contacts.txt", "w") as file:
-
-            for contact in contacts:
-
-                file.write(
-                    f"{contact['name']},{contact['phone']},{contact['email']}\n"
-                )
-
-        print("✅ Contacts Saved Successfully!")
-
-    elif choice == "7":
-
-        print("Thank You For Using Contact Book!")
-        break
-
-    else:
-
-        print("❌ Invalid Choice")
+print("\n====================")
+print("Your Score:", score, "/3")
