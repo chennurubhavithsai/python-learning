@@ -1,51 +1,83 @@
 score = 0
 
+questions = [
+    {
+        "question": "1. What is the output of print(5 + 3)?",
+        "options": ["A. 53", "B. 8", "C. Error", "D. None"],
+        "answer": "B"
+    },
+    {
+        "question": "2. Which keyword is used to create a function?",
+        "options": ["A. function", "B. define", "C. def", "D. func"],
+        "answer": "C"
+    },
+    {
+        "question": "3. Which data type stores True or False?",
+        "options": ["A. int", "B. bool", "C. string", "D. list"],
+        "answer": "B"
+    },
+    {
+        "question": "4. Which symbol is used for comments?",
+        "options": ["A. //", "B. <!--", "C. #", "D. **"],
+        "answer": "C"
+    },
+    {
+        "question": "5. Which loop repeats while a condition is True?",
+        "options": ["A. for", "B. while", "C. repeat", "D. loop"],
+        "answer": "B"
+    },
+    {
+        "question": "6. Which function is used to get user input?",
+        "options": ["A. print()", "B. input()", "C. scan()", "D. read()"],
+        "answer": "B"
+    },
+    {
+        "question": "7. Which symbol is used for assignment?",
+        "options": ["A. =", "B. ==", "C. :", "D. +"],
+        "answer": "A"
+    },
+    {
+        "question": "8. Which keyword exits a loop?",
+        "options": ["A. continue", "B. stop", "C. break", "D. exit"],
+        "answer": "C"
+    },
+    {
+        "question": "9. Which data type stores multiple values?",
+        "options": ["A. list", "B. int", "C. float", "D. bool"],
+        "answer": "A"
+    },
+    {
+        "question": "10. Which keyword is used for conditions?",
+        "options": ["A. for", "B. while", "C. if", "D. input"],
+        "answer": "C"
+    }
+]
+
 print("===== PYTHON QUIZ =====")
 
-print("\nQuestion 1")
-print("What is the output of print(5 + 3)?")
-print("A. 53")
-print("B. 8")
-print("C. Error")
-print("D. None")
+for q in questions:
 
-answer = input("Enter your answer (A/B/C/D): ").upper()
+    print("\n" + q["question"])
 
-if answer == "B":
-    print("✅ Correct!")
-    score += 1
+    for option in q["options"]:
+        print(option)
+
+    answer = input("Enter your answer (A/B/C/D): ").upper()
+
+    if answer == q["answer"]:
+        print("✅ Correct!")
+        score += 1
+    else:
+        print("❌ Wrong!")
+
+percentage = (score / len(questions)) * 100
+
+print("\n==========================")
+print("Quiz Finished!")
+print("Score:", score, "/", len(questions))
+print("Percentage:", percentage, "%")
+
+if percentage >= 50:
+    print("🎉 Result: PASS")
 else:
-    print("❌ Wrong!")
-
-print("\nQuestion 2")
-print("Which keyword is used to create a function?")
-print("A. function")
-print("B. define")
-print("C. def")
-print("D. func")
-
-answer = input("Enter your answer (A/B/C/D): ").upper()
-
-if answer == "C":
-    print("✅ Correct!")
-    score += 1
-else:
-    print("❌ Wrong!")
-
-print("\nQuestion 3")
-print("Which data type stores True or False?")
-print("A. int")
-print("B. bool")
-print("C. string")
-print("D. list")
-
-answer = input("Enter your answer (A/B/C/D): ").upper()
-
-if answer == "B":
-    print("✅ Correct!")
-    score += 1
-else:
-    print("❌ Wrong!")
-
-print("\n====================")
-print("Your Score:", score, "/3")
+    print("📚 Result: FAIL")
