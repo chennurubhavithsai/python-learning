@@ -1,5 +1,32 @@
 students = []
 
+# Load student records
+try:
+    with open("students.txt", "r") as file:
+        for line in file:
+            data = line.strip().split(",")
+
+            if len(data) == 10:
+                name = data[0]
+                marks = list(map(float, data[1:6]))
+                total = float(data[6])
+                average = float(data[7])
+                percentage = float(data[8])
+                grade = data[9]
+
+                students.append({
+                    "name": name,
+                    "marks": marks,
+                    "total": total,
+                    "average": average,
+                    "percentage": percentage,
+                    "grade": grade
+                })
+
+except FileNotFoundError:
+    pass
+
+
 while True:
 
     print("\n===== STUDENT RESULT MANAGEMENT =====")
@@ -7,7 +34,9 @@ while True:
     print("2. View Results")
     print("3. Search Student")
     print("4. Update Marks")
-    print("5. Exit")
+    print("5. Delete Student")
+    print("6. Save Results")
+    print("7. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -71,7 +100,6 @@ while True:
         found = False
 
         for student in students:
-
             if student["name"].lower() == search:
 
                 print("\n✅ Student Found")
@@ -95,7 +123,6 @@ while True:
         found = False
 
         for student in students:
-
             if student["name"].lower() == update:
 
                 marks = []
@@ -127,7 +154,7 @@ while True:
                 student["percentage"] = percentage
                 student["grade"] = grade
 
-                print("✅ Student marks updated successfully!")
+                print("✅ Student updated successfully!")
 
                 found = True
                 break
@@ -136,6 +163,36 @@ while True:
             print("❌ Student not found.")
 
     elif choice == "5":
+
+        delete = input("Enter student name to delete: ").lower()
+
+        found = False
+
+        for student in students:
+            if student["name"].lower() == delete:
+                students.remove(student)
+                print("✅ Student deleted successfully!")
+                found = True
+                break
+
+        if not found:
+            print("❌ Student not found.")
+
+    elif choice == "6":
+
+        with open("students.txt", "w") as file:
+
+            for student in students:
+
+                marks = ",".join(map(str, student["marks"]))
+
+                file.write(
+                    f"{student['name']},{marks},{student['total']},{student['average']},{student['percentage']},{student['grade']}\n"
+                )
+
+        print("✅ Student records saved successfully!")
+
+    elif choice == "7":
 
         print("Thank you for using Student Result Management System!")
         break

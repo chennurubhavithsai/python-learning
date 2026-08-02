@@ -1,4 +1,0 @@
-Name: bhavith sai
-Age: 16
-Course: mpc
-----------------------
