@@ -1,150 +1,69 @@
-books = []
-
-# Load books from file
-try:
-    with open("library.txt", "r") as file:
-        for line in file:
-            data = line.strip().split(",")
-
-            if len(data) == 3:
-                books.append({
-                    "title": data[0],
-                    "author": data[1],
-                    "available": data[2] == "True"
-                })
-
-except FileNotFoundError:
-    pass
-
+students = []
 
 while True:
-
-    print("\n===== LIBRARY MANAGEMENT SYSTEM =====")
-    print("1. Add Book")
-    print("2. View Books")
-    print("3. Search Book")
-    print("4. Borrow Book")
-    print("5. Return Book")
-    print("6. Save Library")
-    print("7. Exit")
+    print("\n===== STUDENT RESULT MANAGEMENT =====")
+    print("1. Add Student")
+    print("2. View Results")
+    print("3. Exit")
 
     choice = input("Enter your choice: ")
 
     if choice == "1":
+        name = input("Enter student name: ")
 
-        title = input("Enter Book Title: ")
-        author = input("Enter Author Name: ")
+        marks = []
 
-        books.append({
-            "title": title,
-            "author": author,
-            "available": True
+        for i in range(1, 6):
+            mark = float(input(f"Enter marks for Subject {i}: "))
+            marks.append(mark)
+
+        total = sum(marks)
+        average = total / 5
+        percentage = average
+
+        if percentage >= 90:
+            grade = "A+"
+        elif percentage >= 80:
+            grade = "A"
+        elif percentage >= 70:
+            grade = "B"
+        elif percentage >= 60:
+            grade = "C"
+        elif percentage >= 50:
+            grade = "D"
+        else:
+            grade = "F"
+
+        students.append({
+            "name": name,
+            "marks": marks,
+            "total": total,
+            "average": average,
+            "percentage": percentage,
+            "grade": grade
         })
 
-        print("✅ Book Added Successfully!")
+        print("✅ Student result added successfully!")
 
     elif choice == "2":
 
-        if len(books) == 0:
-            print("No books available.")
+        if len(students) == 0:
+            print("No student records found.")
 
         else:
+            print("\n===== STUDENT RESULTS =====")
 
-            print("\n===== BOOK LIST =====")
-
-            for i, book in enumerate(books, start=1):
-
-                status = "Available" if book["available"] else "Borrowed"
-
-                print(f"\nBook {i}")
-                print("Title :", book["title"])
-                print("Author:", book["author"])
-                print("Status:", status)
+            for student in students:
+                print("\nName:", student["name"])
+                print("Marks:", student["marks"])
+                print("Total:", student["total"])
+                print("Average:", round(student["average"], 2))
+                print("Percentage:", round(student["percentage"], 2), "%")
+                print("Grade:", student["grade"])
 
     elif choice == "3":
-
-        search = input("Enter Book Title: ").lower()
-
-        found = False
-
-        for book in books:
-
-            if book["title"].lower() == search:
-
-                print("\n✅ Book Found")
-                print("Title :", book["title"])
-                print("Author:", book["author"])
-                print("Status:", "Available" if book["available"] else "Borrowed")
-
-                found = True
-                break
-
-        if not found:
-            print("❌ Book Not Found")
-
-    elif choice == "4":
-
-        borrow = input("Enter Book Title to Borrow: ").lower()
-
-        found = False
-
-        for book in books:
-
-            if book["title"].lower() == borrow:
-
-                found = True
-
-                if book["available"]:
-                    book["available"] = False
-                    print("✅ Book Borrowed Successfully!")
-                else:
-                    print("❌ Book Already Borrowed!")
-
-                break
-
-        if not found:
-            print("❌ Book Not Found")
-
-    elif choice == "5":
-
-        return_book = input("Enter Book Title to Return: ").lower()
-
-        found = False
-
-        for book in books:
-
-            if book["title"].lower() == return_book:
-
-                found = True
-
-                if not book["available"]:
-                    book["available"] = True
-                    print("✅ Book Returned Successfully!")
-                else:
-                    print("❌ This Book Was Not Borrowed.")
-
-                break
-
-        if not found:
-            print("❌ Book Not Found")
-
-    elif choice == "6":
-
-        with open("library.txt", "w") as file:
-
-            for book in books:
-
-                file.write(
-                    f"{book['title']},{book['author']},{book['available']}\n"
-                )
-
-        print("✅ Library Saved Successfully!")
-
-    elif choice == "7":
-
-        print("📚 Thank You For Using Library Management System!")
+        print("Thank you!")
         break
 
     else:
-
-        print("❌ Invalid Choice")
+        print("❌ Invalid choice.")
