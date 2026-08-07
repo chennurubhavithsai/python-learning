@@ -1,5 +1,24 @@
 patients = []
 
+# Load patient records
+try:
+    with open("patients.txt", "r") as file:
+        for line in file:
+            data = line.strip().split(",")
+
+            if len(data) == 5:
+                patients.append({
+                    "id": data[0],
+                    "name": data[1],
+                    "age": int(data[2]),
+                    "disease": data[3],
+                    "doctor": data[4]
+                })
+
+except FileNotFoundError:
+    pass
+
+
 while True:
 
     print("\n===== HOSPITAL MANAGEMENT SYSTEM =====")
@@ -7,7 +26,10 @@ while True:
     print("2. View Patients")
     print("3. Search Patient")
     print("4. Update Patient")
-    print("5. Exit")
+    print("5. Delete Patient")
+    print("6. Patient Statistics")
+    print("7. Save Records")
+    print("8. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -84,7 +106,7 @@ while True:
                 patient["disease"] = input("Enter New Disease: ")
                 patient["doctor"] = input("Enter New Doctor Name: ")
 
-                print("✅ Patient details updated successfully!")
+                print("✅ Patient updated successfully!")
 
                 found = True
                 break
@@ -93,6 +115,64 @@ while True:
             print("❌ Patient not found.")
 
     elif choice == "5":
+
+        delete = input("Enter Patient ID to delete: ")
+
+        found = False
+
+        for patient in patients:
+
+            if patient["id"] == delete:
+
+                patients.remove(patient)
+
+                print("✅ Patient deleted successfully!")
+
+                found = True
+                break
+
+        if not found:
+            print("❌ Patient not found.")
+
+    elif choice == "6":
+
+        if len(patients) == 0:
+            print("No patient records found.")
+
+        else:
+
+            print("\n===== PATIENT STATISTICS =====")
+            print("Total Patients:", len(patients))
+
+            doctor_count = {}
+
+            for patient in patients:
+
+                doctor = patient["doctor"]
+
+                if doctor in doctor_count:
+                    doctor_count[doctor] += 1
+                else:
+                    doctor_count[doctor] = 1
+
+            print("\nPatients per Doctor:")
+
+            for doctor, count in doctor_count.items():
+                print(f"{doctor}: {count}")
+
+    elif choice == "7":
+
+        with open("patients.txt", "w") as file:
+
+            for patient in patients:
+
+                file.write(
+                    f"{patient['id']},{patient['name']},{patient['age']},{patient['disease']},{patient['doctor']}\n"
+                )
+
+        print("✅ Patient records saved successfully!")
+
+    elif choice == "8":
 
         print("🏥 Thank you for using Hospital Management System!")
         break
