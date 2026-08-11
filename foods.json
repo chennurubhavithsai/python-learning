@@ -1,9 +1,9 @@
 [
     {
-        "name": ".rice",
-        "protein": 5.0,
-        "carbs": 45.0,
-        "fat": 1.0,
-        "calories": 209.0
+        "name": "rice",
+        "protein": 14.0,
+        "carbs": 53.0,
+        "fat": 41.0,
+        "calories": 637.0
     }
 ]
