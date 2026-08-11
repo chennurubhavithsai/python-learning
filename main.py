@@ -3,13 +3,22 @@ import json
 foods = []
 
 
+# -------------------------------
+# Calculate Calories
+# -------------------------------
+
 def calculate_calories(protein, carbs, fat):
     return (protein * 4) + (carbs * 4) + (fat * 9)
 
 
+# -------------------------------
+# Add Food
+# -------------------------------
+
 def add_food():
 
     name = input("Enter food name: ")
+
     protein = float(input("Enter protein (g): "))
     carbs = float(input("Enter carbohydrates (g): "))
     fat = float(input("Enter fat (g): "))
@@ -29,6 +38,10 @@ def add_food():
     print("✅ Food added successfully!")
 
 
+# -------------------------------
+# View Foods
+# -------------------------------
+
 def view_foods():
 
     if len(foods) == 0:
@@ -45,6 +58,10 @@ def view_foods():
         print("Fat:", food["fat"], "g")
         print("Calories:", food["calories"], "kcal")
 
+
+# -------------------------------
+# Search Food
+# -------------------------------
 
 def search_food():
 
@@ -70,6 +87,10 @@ def search_food():
         print("❌ Food not found.")
 
 
+# -------------------------------
+# Update Food
+# -------------------------------
+
 def update_food():
 
     name = input("Enter food name to update: ").lower()
@@ -80,18 +101,16 @@ def update_food():
 
         if food["name"].lower() == name:
 
-            print("\nEnter new nutrition values:")
-
             food["protein"] = float(
-                input("Protein (g): ")
+                input("New protein (g): ")
             )
 
             food["carbs"] = float(
-                input("Carbohydrates (g): ")
+                input("New carbohydrates (g): ")
             )
 
             food["fat"] = float(
-                input("Fat (g): ")
+                input("New fat (g): ")
             )
 
             food["calories"] = calculate_calories(
@@ -108,6 +127,10 @@ def update_food():
     if not found:
         print("❌ Food not found.")
 
+
+# -------------------------------
+# Delete Food
+# -------------------------------
 
 def delete_food():
 
@@ -130,6 +153,10 @@ def delete_food():
         print("❌ Food not found.")
 
 
+# -------------------------------
+# Save Foods
+# -------------------------------
+
 def save_foods():
 
     with open("foods.json", "w") as file:
@@ -143,6 +170,94 @@ def save_foods():
     print("💾 Database saved successfully!")
 
 
+# -------------------------------
+# Load Foods
+# -------------------------------
+
+def load_foods():
+
+    try:
+
+        with open("foods.json", "r") as file:
+
+            data = json.load(file)
+
+            foods.extend(data)
+
+        print("📂 Food database loaded successfully!")
+
+    except FileNotFoundError:
+
+        print("ℹ️ No existing database found.")
+
+    except json.JSONDecodeError:
+
+        print("❌ foods.json contains invalid data.")
+
+
+# -------------------------------
+# Nutrition Statistics
+# -------------------------------
+
+def statistics():
+
+    if len(foods) == 0:
+
+        print("No food data available.")
+        return
+
+    total_protein = sum(
+        food["protein"]
+        for food in foods
+    )
+
+    total_carbs = sum(
+        food["carbs"]
+        for food in foods
+    )
+
+    total_fat = sum(
+        food["fat"]
+        for food in foods
+    )
+
+    total_calories = sum(
+        food["calories"]
+        for food in foods
+    )
+
+    highest_calorie_food = max(
+        foods,
+        key=lambda food: food["calories"]
+    )
+
+    print("\n===== NUTRITION STATISTICS =====")
+
+    print("Total Foods:", len(foods))
+    print(f"Total Protein: {total_protein:.2f} g")
+    print(f"Total Carbs: {total_carbs:.2f} g")
+    print(f"Total Fat: {total_fat:.2f} g")
+    print(f"Total Calories: {total_calories:.2f} kcal")
+
+    print("\n🏆 Highest-Calorie Food")
+    print("Food:", highest_calorie_food["name"])
+    print(
+        f"Calories: "
+        f"{highest_calorie_food['calories']:.2f} kcal"
+    )
+
+
+# -------------------------------
+# Load database
+# -------------------------------
+
+load_foods()
+
+
+# -------------------------------
+# Main Menu
+# -------------------------------
+
 while True:
 
     print("\n===== FOOD PRODUCT DATABASE =====")
@@ -151,8 +266,9 @@ while True:
     print("3. Search Food")
     print("4. Update Food")
     print("5. Delete Food")
-    print("6. Save Foods")
-    print("7. Exit")
+    print("6. Nutrition Statistics")
+    print("7. Save Foods")
+    print("8. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -172,10 +288,16 @@ while True:
         delete_food()
 
     elif choice == "6":
-        save_foods()
+        statistics()
 
     elif choice == "7":
-        print("🥗 Goodbye!")
+        save_foods()
+
+    elif choice == "8":
+
+        save_foods()
+
+        print("🥗 Thank you for using Food Product Database!")
         break
 
     else:
